@@ -25,20 +25,18 @@ Ad = modeloDiscreto.A;
 Bd = modeloDiscreto.B;
 Cd = modeloDiscreto.C;
 
-%%
 
 obj = ModeloExpandido(modelo,Ts);
 
 mEstendidoY = obj.getModeloExpandido;
+[Ae,Be,Ce] = criarModeloIntegralU(Ad,Bd,Cd);
+De = zeros(size(Ce,1),size(Be,2));
+mEstendidoU = ss(Ae,Be,Ce,De,Ts);
+clear Ae Be Ce De
 
-eig(modeloDiscreto)
-eig(mEstendidoY)
-
-step(modeloDiscreto)
+impulse(mEstendidoU,'.')
 hold on
-step(mEstendidoY)
+impulse(mEstendidoY,'r--')
 
-
-
-
-
+legend('M. Estendido u[k-1]','M. Estendido y[k]')
+title('Resposta ao Impulso')
