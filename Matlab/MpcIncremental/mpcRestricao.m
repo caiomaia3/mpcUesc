@@ -26,6 +26,12 @@ Cd = modeloDiscreto.C;
 
 clear A B C 
 
+
+nu=size(Bd,2); %nEntrada
+ny=size(Cd,1); %nSaída
+nx=size(Ad,1); %nEstado
+
+
 %Sintonia do controlador
 horizontePredicao = 15;
 horizonteControle = 10;
@@ -35,6 +41,17 @@ matrizRbarra = r*eye(horizonteControle);
 matrizQbarra = q*eye(horizontePredicao);
 
 controlador = MpcUesc(modelo,horizontePredicao,horizonteControle,matrizQbarra,matrizRbarra,Ts);
+
+dim = controlador.getDimesaoExpandida()
+nu=size(Bd,2); %nEntrada
+ny=size(Cd,1); %nSaída
+nx=size(Ad,1); %nEstado
+
+
+Uk=ones(horizonteControle*nu,1);
+Yref=ones(horizontePredicao*ny,1);
+xk=ones(nx,1);
+controlador.calcularJk(Uk,Yref,xk)
 
 M = controlador.getMatrizMpc;
 F = M.F;

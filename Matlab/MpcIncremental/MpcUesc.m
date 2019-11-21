@@ -95,7 +95,19 @@ classdef MpcUesc < ModeloExpandido
          %
       end
       
-      function Jk = calcularJk()
+      function saida = calcularJk(esteMPC,Uk,Yref,xk)
+         m = esteMPC.getMatrizMpc();
+         s = esteMPC.getSintonia();
+         phi = m.Phi;
+         f = m.F;
+         qbar = s.MatrizQbarra;
+         rbar = s.MatrizRbarra;
+         
+          H = phi.'*qbar*phi + rbar;
+         E = Yref - f*xk;
+%          cf = -2*E.'*Qbarra*phi;
+%          c = E.'*Qbarra*E;
+      end
    end%end method
   
    
