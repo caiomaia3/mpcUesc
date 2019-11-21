@@ -13,7 +13,7 @@ fs = 0.6;   %Constante de atrito
 A =   [0     1;
       -K/M  -fs/M];
 B = [0;
-      1/M];  
+      1/M];
 C = [1 0];
 
 modelo = ss(A,B,C,0); %Espaço de estados contínuo
