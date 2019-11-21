@@ -36,7 +36,7 @@ eig(mExpandido)
 
 step(modeloDiscreto)
 hold on
-impulse(mExpandido)
+step(mExpandido)
 
 
 

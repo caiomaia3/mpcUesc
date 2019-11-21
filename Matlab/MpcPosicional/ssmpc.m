@@ -92,7 +92,10 @@ for in=1:nsim
     Ain=[IM;-IM];
     Bin=[Dumax+Ibar*uk_1;Dumax-Ibar*uk_1];
     options=optimoptions('quadprog','display','off');
+    
     ukk=quadprog(H,ct,Ain,Bin,[],[],Umin,Umax,[],options);
+    
+    
     uk=ukk(1:nu);
     Jk(in)=ukk'*H*ukk+2*ct*ukk+c;
     

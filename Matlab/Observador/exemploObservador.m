@@ -42,6 +42,7 @@ tSimulacao = 200;
 
 XHATINICIAL = [2;
           0];
+       
 XINICIAL = [1;
        0];
     
@@ -73,7 +74,7 @@ plot(grafX(1,:))
 figure()
 
 plot(grafXhat(1,:)-grafX(1,:))
-
+grid on
 
 %%
 close all

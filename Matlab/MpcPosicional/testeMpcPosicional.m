@@ -33,14 +33,19 @@ tSimulado = 100;
 nx = 2;
 nu = 1;
 ny = 1;
+
 q = 10;
 r = 1;
+
 ys =5;
 uk_1 = 0;
-xmk = [-1;0];
-umax = 10;
-umin = -10;
-dumax = 1;
+%xmk = [-1;0];
+
+umax = 100;
+umin = -100;
+dumax = 100;
+
+
 uss = 0;
 yss = 0;
 xss = [0;0];
@@ -49,10 +54,12 @@ u0 = uss;
 x0 = [-10;0];
 y0 = Cd*x0;
 
-yref = 1;
+yref = 100
+
+
 %mpcUescPos =@(uk_1,xmk) issmpc(p,m,nu,ny,q,r,Ad,Bd,Cd,umax,umin,dumax,ys,uk_1,xmk);
 
-[ur,yr,Jk]=ssmpc(p,m,nu,ny,nx,tSimulado,q,r,Ad,Bd,Cd,Ad,Bd,Cd,umax,umin,dumax,yref,uss,yss,xss,y0,u0,x0);
+[ur,yr,Jk]=ssmpc(p,m,nu,ny,nx,tSimulado,q,r,Ad,Bd,Cd,1*Ad,Bd,Cd,umax,umin,dumax,yref,uss,yss,xss,y0,u0,x0);
 
 
 Yref = yref*ones(1,tSimulado);
@@ -64,6 +71,7 @@ grid on
 
 figure()
 stairs(ur)
+grid on
 
 figure()
 plot(Jk)
